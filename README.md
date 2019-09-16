@@ -1,6 +1,6 @@
 # TRANSCUP 
 
-TRANSCUP  a free, scalable and extendable software for CUP predication, which comprises modules for raw data processing, read mapping, quality report, gene expression quantification, and machine learning model training and predication. TRANSCUP classifier has 99.3% accuracy on external validation datasets, shows potential clinical application value.
+Cancer of unknown primary site (CUP) accounts for 5% of all cancer diagnoses. These patients may benefit from more precise treatment when primary cancer site was identified. Advances in high-throughput sequencing have enabled cost-effective sequencing the transcriptome for clinical application. Here, we present a free, scalable and extendable software for CUP predication called TRANSCUP, which enables (1) raw data processing, (2) read mapping, (3) quality report, (4) gene expression quantification, (5) random forest machine learning model building for cancer type clas-sification. TRANSCUP achieved high accuracy, sensitivity and specificity for tumor type classifica-tion based on external RNA-seq datasets. It has potential for broad clinical application for solving the CUP problem.
 
 # INSTALL
 ## Requirments
@@ -148,8 +148,7 @@ Rscript 06_make_R_dataset.R
 
 # Build a random forest model
 cd ../random_forest
-## train a final model with selected hyper-parameter
-Rscript train.R
+
 ## train tuning to select an ideal  hyper-parameter
 Rscript train_cross_validation.R
 </pre>
