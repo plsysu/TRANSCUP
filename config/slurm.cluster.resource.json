@@ -1,0 +1,126 @@
+{
+  "documenation": {
+        "cmdline": "Use with snakemake --cluster-config cluster.slurm.cheaha.json
+        --cluster 'sbatch --job-name {cluster.job-name} --ntasks {cluster.ntasks}
+         --cpus-per-task {threads} --mem {cluster.mem} --partition {cluster.partition}
+          --time {cluster.time} --mail-user {cluster.mail-user} --mail-type {cluster.mail-type}
+           --error {cluster.error} --output {cluster.output}'"
+    },
+  "__default__":
+  {
+    "job-name": "TASK.{rule}.{wildcards.sample}",
+    "name": "TASK.{rule}.{wildcards.sample}",
+    "mem": "1G",
+    "time": "365-00:00:00",
+    "partition": "research",
+    "threads": 1,
+    "nodes": 1,
+    "ntasks": 1,
+    "cpus-per-task": 1,
+    "mem-per-cpu": "1G",
+    "output": "logs/{rule}.{wildcards.sample}.%j.%N.out.txt",
+    "error": "logs/{rule}.{wildcards.sample}.%j.%N.err.txt",
+    "mail-user": "lip@origimed.com",
+    "mail-type": "ALL"
+  },
+  "trimmomatic_paired":
+  {
+    "mem": "20G",
+    "threads": 8
+  },
+  "trimmomatic_single":
+  {
+    "mem": "20G",
+    "threads": 8
+  },
+  "alignSingleFileStar":
+  {
+    "mem": "100G",
+    "threads": 16
+  },
+  "alignPairedFileStar":
+  {
+    "mem": "100G",
+    "threads": 16
+  },
+  "samtools_sort_name_Single":
+  {
+    "mem": "100G",
+    "threads": 8
+  },
+  "samtools_sort_name_Paired":
+  {
+    "mem": "100G",
+    "threads": 8
+  },
+  "samtools_sort_pos_Single":
+  {
+    "mem": "100G",
+    "threads": 8
+  },
+  "samtools_sort_pos_Paired":
+  {
+    "mem": "100G",
+    "threads": 8
+  },
+  "htseqcountSingle":
+  {
+    "mem": "20G",
+    "threads": 4
+  },
+  "htseqcountPaired":
+  {
+    "mem": "20G",
+    "threads": 4
+  },
+  "htseqcount2fpkmSingle":
+  {
+    "mem": "1G",
+    "threads": 1
+  },
+  "htseqcount2fpkmPaired":
+  {
+    "mem": "1G",
+    "threads": 1
+  },
+  "countReadsInFastq":
+  {
+    "mem": "1G",
+    "threads": 1
+  },
+  "runFastqcOnFastqs":
+  {
+    "mem": "10G",
+    "threads": 8
+  },
+  "runFlagstat":
+  {
+    "mem": "1G",
+    "threads": 1
+  },
+  "runSamtoolsHeader":
+  {
+    "mem": "1G",
+    "threads": 1
+  },
+  "rnaseqc_Single":
+  {
+    "mem": "10G",
+    "threads": 4
+  },
+  "rnaseqc_Paired":
+  {
+    "mem": "10G",
+    "threads": 4
+  },
+  "picards_mark_PCR_duplicates_Single":
+  {
+    "mem": "20G",
+    "threads": 6
+  },
+  "picards_mark_PCR_duplicates_Paired":
+  {
+    "mem": "20G",
+    "threads": 6
+  }
+}

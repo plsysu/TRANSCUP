@@ -1,0 +1,191 @@
+{
+  "resources":{
+      "H_sapiens_hg38":{
+          "reference": "/datapool/research/other/lip/database/hg38/GRCh38.d1.vd1.fa",
+          "GTF": "/datapool/research/other/lip/database/hg38/gencode.v22.annotation.gtf",
+          "GTF_collapse": "/datapool/research/other/lip/database/hg38/gencode.v22.annotation.collapse.gtf",
+          "gene_length": "/datapool/research/other/lip/database/hg38/gene_length_genecode_v22.tsv"
+        },
+        "general":{
+            "sequencingAdapter": "/public/home/hpclip/tools/Trimmomatic-0.38/adapters/TruSeq3-PE.fa"
+          }
+    },
+    "tools":{
+      "trimmomatic": {
+          "call": "java -Xmx20G -jar /public/home/hpclip/tools/Trimmomatic-0.38/trimmomatic-0.38.jar ",
+          "scratch": "20000",
+          "mem": "20000",
+          "time": "20000",
+          "paired": {
+              "slidingwindow": "4",
+              "threads": 8,
+              "phred": "-phred33",
+              "mode": "PE",
+              "minQual": "15",
+              "leadingQual": "3",
+              "tailingQual": "3",
+              "seedmismatches": "1",
+              "palindrom": "30",
+              "min_adapt_len": "1",
+              "keep_both": "true",
+              "minlen": "50",
+              "score": "7"
+          },
+          "single": {
+              "slidingwindow": "4",
+              "threads": 8,
+              "phred": "-phred33",
+              "mode": "SE",
+              "minQual": "15",
+              "leadingQual": "3",
+              "tailingQual": "3",
+              "adapterfile": "/public/home/hpclip/tools/Trimmomatic-0.38/adapters/TruSeq3-SE.fa",
+              "seedmismatches": "1",
+              "palindrom": "30",
+              "minlen": "50",
+              "score": "7"
+          }
+
+      },
+      "samtools":{
+          "call":"samtools ",
+          "flagstat":{
+              "scratch":"1000",
+              "mem": "1000",
+              "time": "1000",
+              "threads": 1
+          },
+          "sortName":{
+              "scratch":"20000",
+              "mem": "20000",
+              "time": "20000",
+              "threads": 8,
+              "params": ""
+          },
+          "sortCor":{
+              "scratch":"20000",
+              "mem": "20000",
+              "time": "20000",
+              "threads": 8,
+              "params": ""
+          }
+      },
+      "fastqc": {
+          "call" : "fastqc ",
+          "scratch": "3000",
+          "mem": "3000",
+          "time": "6000",
+          "threads": 8,
+          "params": ""
+      },
+      "star":{
+        "call" : "/public/home/hpclip/software/STAR-2.6.1c/bin/Linux_x86_64/STAR ",
+        "index": "/datapool/research/other/lip/database/STAR/star_index_genecodev22",
+        "scratch": "40000",
+        "mem": "40000",
+        "time": "40000",
+        "threads": 16,
+        "params": " --alignIntronMax  1000000 --alignIntronMin 20 --alignMatesGapMax 1000000 --alignSJDBoverhangMin 1 --alignSJoverhangMin 8 --alignSoftClipAtReferenceEnds Yes --chimJunctionOverhangMin 15 --chimMainSegmentMultNmax 1 --chimOutType Junctions SeparateSAMold WithinBAM SoftClip --chimSegmentMin 15 --genomeLoad NoSharedMemory --limitSjdbInsertNsj 1200000 --outFilterIntronMotifs None --outFilterMatchNminOverLread 0.33 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.1 --outFilterMultimapNmax 20 --outFilterScoreMinOverLread 0.33 --outFilterType BySJout --outSAMattributes NH HI AS nM NM ch --outSAMstrandField intronMotif --outSAMtype BAM Unsorted --outSAMunmapped Within --quantMode TranscriptomeSAM GeneCounts --readFilesCommand zcat --twopassMode Basic "
+      },
+      "htseqcount":{
+        "call": "htseq-count ",
+        "scratch": "20000",
+        "mem": "20000",
+        "time": "20000",
+        "threads": 4,
+        "params": "-f bam -r name -s no -a 10 -t exon -i gene_id -m intersection-nonempty "
+      },
+      "rnaseqc":{
+        "call": "/public/home/hpclip/software/rnaseqc.v2.3.2.linux ",
+        "scratch": "10000",
+        "mem": "10000",
+        "time": "10000",
+        "threads": 4,
+        "params": "--coverage "
+      },
+      "htseqcount2fpkm":{
+        "call": "/public/home/hpclip/software/R/version_3.5.1/bin/Rscript /public/home/hpclip/software/TRANSCUP/pipeline/htseqcount2fpkm.R ",
+        "scratch": "3000",
+        "mem": "3000",
+        "time": "3000",
+        "threads": 1,
+        "params": ""
+      },
+      "Random_forest_model_predict":{
+        "call": "/public/home/hpclip/software/R/version_3.5.1/bin/Rscript /public/home/hpclip/software/TRANSCUP/pipeline/Random_forest_model_predict.R ",
+        "model": "/public/home/hpclip/software/TRANSCUP/data/model/Model_RF_corss_validation_TOP200.rds",
+        "scratch": "3000",
+        "mem": "3000",
+        "time": "3000",
+        "threads": 1,
+        "params": ""
+      },
+      "countReadsInFastq":{
+        "scratch": "3000",
+        "mem": "3000",
+        "time": "600",
+        "threads": 1
+      },
+      "picard":{
+          "call": "java -jar -Xmx16G -XX:ParallelGCThreads=5 /public/home/hpclip/bin/picard.jar ",
+          "markduplicates":{
+              "mem": "16000",
+              "time": "8000",
+              "scratch": "8000",
+              "threads": 6,
+              "params": "ASSUME_SORTED=true MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=1000 MAX_RECORDS_IN_RAM=500000 REMOVE_DUPLICATES=false CREATE_INDEX=true"
+          },
+          "fixMateInformation":{
+              "sortOrder": "coordinate",
+              "mem": "16000",
+              "time": "8000",
+              "scratch": "8000",
+              "threads": 6,
+              "assume_sorted": "false",
+              "params": "MAX_RECORDS_IN_RAM=500000"
+          },
+          "cleanSam":{
+            "mem": "16000",
+            "time": "8000",
+            "scratch": "8000",
+              "threads": 6
+          },
+          "updateVCFSequenceDictionary":{
+              "mem": "16000",
+              "time": "8000",
+              "scratch": "8000",
+              "threads": 6
+          },
+          "sortVCF":{
+              "threads": 6,
+              "mem": "16000",
+              "time": "8000",
+              "scratch": "8000",
+              "params": ""
+          },
+          "mergeBams":{
+              "threads": 6,
+              "mem": "16000",
+              "time": "8000",
+              "scratch": "8000",
+              "assume_sorted": "true",
+              "useOrphans": "N",
+              "params": ""
+          },
+          "collectInsertSizeMetrics":{
+              "threads": 6,
+              "mem": "16000",
+              "time": "8000",
+              "scratch": "8000",
+              "params": ""
+          },
+          "SamToFastq":{
+              "threads": 6,
+              "mem": "16000",
+              "time": "8000",
+              "scratch": "8000",
+              "params": ""
+          }
+      }
+    }
+}

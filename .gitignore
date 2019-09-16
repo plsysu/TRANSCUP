@@ -1,0 +1,13 @@
+# ignore all logs
+*.log
+# ignore all output data
+*output/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# R
+*.RData
+*.Rhistory
