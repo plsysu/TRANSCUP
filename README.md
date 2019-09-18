@@ -12,28 +12,28 @@ Cancer of unknown primary site (CUP) accounts for 5% of all cancer diagnoses. Th
 * python 3
 ### Python packages
 
-* snakemake==5.5.2
-* bx-python==0.8.2
-* HTSeq==0.11.2
-* numpy==1.17.0
-* pandas==0.25.0
-* argparse==1.4.0
+* snakemake>=5.5.2
+* bx-python>=0.8.2
+* HTSeq>=0.11.2
+* numpy>=1.17.0
+* pandas>=0.25.0
+* argparse>=1.4.0
 
 
 ### R packages
-* GenomicFeatures==1.34.3
-* dplyr==0.8.0.1
-* optparse==1.6.1
-* randomForest==4.6.14
-* caret==6.0.81
-* e1071==1.7.0.1
-* data.table==1.12.0
-* regexPipes==0.0.1
-* TCGAbiolinks==2.12.3
-* DT==0.5
-* splitstackshape==1.4.8
-* mlbench==2.1.1
-* doParallel==1.0.14
+* GenomicFeatures>=1.34.3
+* dplyr>=0.8.0.1
+* optparse>=1.6.1
+* randomForest>=4.6.14
+* caret>=6.0.81
+* e1071>=1.7.0.1
+* data.table>=1.12.0
+* regexPipes>=0.0.1
+* TCGAbiolinks>=2.12.3
+* DT>=0.5
+* splitstackshape>=1.4.8
+* mlbench>=2.1.1
+* doParallel>=1.0.14
 
 ### Public softwares
 * [STAR](https://github.com/alexdobin/STAR/archive/2.6.1c.tar.gz)
