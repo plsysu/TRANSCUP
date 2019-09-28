@@ -1,4 +1,4 @@
-# TRANSCUP 
+# TRANSCUP
 
 Cancer of unknown primary site (CUP) accounts for 5% of all cancer diagnoses. These patients may benefit from more precise treatment when primary cancer site was identified. Advances in high-throughput sequencing have enabled cost-effective sequencing the transcriptome for clinical application. Here, we present a free, scalable and extendable software for CUP predication called TRANSCUP, which enables (1) raw data processing, (2) read mapping, (3) quality report, (4) gene expression quantification, (5) random forest machine learning model building for cancer type clas-sification. TRANSCUP achieved high accuracy, sensitivity and specificity for tumor type classifica-tion based on external RNA-seq datasets. It has potential for broad clinical application for solving the CUP problem.
 
@@ -7,6 +7,13 @@ Cancer of unknown primary site (CUP) accounts for 5% of all cancer diagnoses. Th
 
 
 # INSTALL
+## clone source code 
+* install [git](https://git-scm.com/)
+* install [git-lfs](https://github.com/git-lfs/git-lfs)
+<pre>
+git lfs clone https://github.com/plsysu/TRANSCUP.git
+</pre>
+
 ## Requirments
 * R >=3.4
 * python 3
@@ -81,13 +88,13 @@ Rscript ./pipeline/gene_length_info.R gencode.v22.annotation.gtf gene_length_gen
 
 **database.software.resource.json**
 
-This json file contains the database file path and software path. 
+This json file contains the database file path and software path.
 <pre>
 ./config/database.software.resource.json
 </pre>
 
 
-**slurm.cluster.resource.json** 
+**slurm.cluster.resource.json**
 
 This file contains the SLURM cluster config information, when run TRANSCUP locally, you can ignore this file.
 <pre>
