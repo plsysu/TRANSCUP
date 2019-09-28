@@ -7,7 +7,7 @@ Cancer of unknown primary site (CUP) accounts for 5% of all cancer diagnoses. Th
 
 
 # INSTALL
-## clone source code 
+## Clone source code using git and git-lfs
 * install [git](https://git-scm.com/)
 * install [git-lfs](https://github.com/git-lfs/git-lfs)
 <pre>
