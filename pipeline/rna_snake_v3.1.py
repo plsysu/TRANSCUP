@@ -178,8 +178,8 @@ rule all:
 
 rule trimmomatic_paired:
     input:
-        forward = TRIMMOMATICIN + '{sample}/PAIREDEND/{fastq}_R1.fastq.gz',
-        reverse = TRIMMOMATICIN + '{sample}/PAIREDEND/{fastq}_R2.fastq.gz',
+        forwardF = TRIMMOMATICIN + '{sample}/PAIREDEND/{fastq}_R1.fastq.gz',
+        reverseF = TRIMMOMATICIN + '{sample}/PAIREDEND/{fastq}_R2.fastq.gz',
     output:
         forwardP = TRIMMOMATICOUT + '{sample}/PAIREDEND/{fastq}_R1_PAIRED.fastq.gz',
         forwardUP = TRIMMOMATICOUT + '{sample}/PAIREDEND/{fastq}_R1_UNPAIRED.fastq.gz',
@@ -217,8 +217,8 @@ rule trimmomatic_paired:
         '{params.mode} ' +
         '{params.phred} ' +
         '-threads {threads} ' +
-        '{input.forward} ' +
-        '{input.reverse} ' +
+        '{input.forwardF} ' +
+        '{input.reverseF} ' +
         '{output.forwardP} ' +
         '{output.forwardUP} ' +
         '{output.reverseP} ' +
@@ -559,7 +559,7 @@ rule htseqcountPaired:
 
 rule htseqcount2fpkmSingle:
     input:
-        count = HTSEQCOUNTSOUT + 'SINGLEEND/{sample}.count.tsv',
+        countF = HTSEQCOUNTSOUT + 'SINGLEEND/{sample}.count.tsv',
         gene_length = config['resources']['H_sapiens_hg38']['gene_length']
     output:
         HTSEQCOUNT2FPKMSOUT + 'SINGLEEND/{sample}.fpkm.tsv'
@@ -574,12 +574,12 @@ rule htseqcount2fpkmSingle:
     threads:
         config['tools']['htseqcount2fpkm']['threads']
     shell:
-        '{config[tools][htseqcount2fpkm][call]} {input.count} {input.gene_length} {output}'
+        '{config[tools][htseqcount2fpkm][call]} {input.countF} {input.gene_length} {output}'
 
 
 rule htseqcount2fpkmPaired:
     input:
-        count = HTSEQCOUNTSOUT + 'PAIREDEND/{sample}.count.tsv',
+        countF = HTSEQCOUNTSOUT + 'PAIREDEND/{sample}.count.tsv',
         gene_length = config['resources']['H_sapiens_hg38']['gene_length']
     output:
         HTSEQCOUNT2FPKMSOUT + 'PAIREDEND/{sample}.fpkm.tsv'
@@ -594,14 +594,14 @@ rule htseqcount2fpkmPaired:
     threads:
         config['tools']['htseqcount2fpkm']['threads']
     shell:
-        '{config[tools][htseqcount2fpkm][call]} {input.count} {input.gene_length} {output}'
+        '{config[tools][htseqcount2fpkm][call]} {input.countF} {input.gene_length} {output}'
 
 
 rule countReadsInFastq:
     input:
         fastq = '{sample}.fastq.gz'
     output:
-        count = '{sample}.count'
+        countF = '{sample}.count'
     params:
         scratch = config['tools']['countReadsInFastq']['scratch'],
         mem = config['tools']['countReadsInFastq']['mem'],
@@ -611,7 +611,7 @@ rule countReadsInFastq:
     threads:
         config['tools']['countReadsInFastq']['threads']
     shell:
-        'zcat {input.fastq} | wc -l | awk \'{{print $1/4}}\' > {output.count}'
+        'zcat {input.fastq} | wc -l | awk \'{{print $1/4}}\' > {output.countF}'
 
 rule runFastqcOnFastqs:
     input:

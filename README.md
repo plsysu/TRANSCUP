@@ -1,6 +1,6 @@
 # TRANSCUP
 
-Cancer of unknown primary site (CUP) accounts for 5% of all cancer diagnoses. These patients may benefit from more precise treatment when primary cancer site was identified. Advances in high-throughput sequencing have enabled cost-effective sequencing the transcriptome for clinical application. Here, we present a free, scalable and extendable software for CUP predication called TRANSCUP, which enables (1) raw data processing, (2) read mapping, (3) quality report, (4) gene expression quantification, (5) random forest machine learning model building for cancer type clas-sification. TRANSCUP achieved high accuracy, sensitivity and specificity for tumor type classifica-tion based on external RNA-seq datasets. It has potential for broad clinical application for solving the CUP problem.
+Cancer of unknown primary site (CUP) accounts for 5% of all cancer diagnoses. These patients may benefit from more precise treatment when primary cancer site was identified. Advances in high-throughput sequencing have enabled cost-effective sequencing the transcriptome for clinical application. Here, we present a free, scalable and extendable software for CUP predication called TRANSCUP, which enables (1) raw data processing, (2) read mapping, (3) quality report, (4) gene expression quantification, (5) random forest machine learning model building for cancer type classification. TRANSCUP achieved high accuracy, sensitivity and specificity for tumor type classification based on external RNA-seq datasets. It has potential for broad clinical application for solving the CUP problem.
 
 # WORKFLOW
 ![](./doc/workflow.png)
@@ -58,7 +58,10 @@ git lfs clone https://github.com/plsysu/TRANSCUP.git
 
 ## Build STAR index
 <pre>
+\# make a directory to store files
+mkdir ./star_index_genecodev22
 
+\# build STAR index
 STAR \
 --runMode genomeGenerate \
 --genomeDir ./star_index_genecodev22 \
