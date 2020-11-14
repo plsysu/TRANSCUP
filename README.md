@@ -58,10 +58,10 @@ git lfs clone https://github.com/plsysu/TRANSCUP.git
 
 ## Build STAR index
 <pre>
-\# make a directory to store files
+# make a directory to store files
 mkdir ./star_index_genecodev22
 
-\# build STAR index
+# build STAR index
 STAR \
 --runMode genomeGenerate \
 --genomeDir ./star_index_genecodev22 \
