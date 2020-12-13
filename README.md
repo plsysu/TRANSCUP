@@ -2,6 +2,10 @@
 
 Cancer of unknown primary site (CUP) accounts for 5% of all cancer diagnoses. These patients may benefit from more precise treatment when primary cancer site was identified. Advances in high-throughput sequencing have enabled cost-effective sequencing the transcriptome for clinical application. Here, we present a free, scalable and extendable software for CUP predication called TRANSCUP, which enables (1) raw data processing, (2) read mapping, (3) quality report, (4) gene expression quantification, (5) random forest machine learning model building for cancer type classification. TRANSCUP achieved high accuracy, sensitivity and specificity for tumor type classification based on external RNA-seq datasets. It has potential for broad clinical application for solving the CUP problem.
 
+# CITATION
+
+Peng L (2020) TRANSCUP: A Scalable Workflow for Predicting Cancer of Unknown Primary Based on Next- Generation Transcriptome Profiling. Insights Biomed Res 4(1):117-119; [DOI:10.36959/584/457](https://scholars.direct/Articles/biomedical-research/ibr-4-022.php?jid=biomedical-research)
+
 # WORKFLOW
 ![](./doc/workflow.png)
 
