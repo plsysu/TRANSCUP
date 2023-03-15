@@ -171,5 +171,4 @@ cd ../random_forest
 Rscript train_cross_validation.R
 </pre>
 
-# CONTACT
-### **Peng Li** <peng-li@outlook.com>
+
